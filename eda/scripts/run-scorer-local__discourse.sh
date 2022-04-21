@@ -27,7 +27,7 @@ python3.7 $DISCRIM_DIR/score_using_discriminator.py \
         --train_data_file_s3 data/edit-events-sentences-for-discourse-modeling.csv \
         --notes "Score sentence edits" \
         --freeze_transformer \
-        --discriminator_path "$SCRIPT_DIR/models/trial-Roberta, high level labels__epoch=08-f1_macro=0.65.ckpt" \
+        --discriminator_path "$SCRIPT_DIR/../models/trial-Roberta, high level labels__epoch=08-f1_macro=0.65.ckpt" \
         --processed_data_fname "$SCRIPT_DIR/data/edit_scores.txt" \
         --context_layer 'lstm' \
         --num_contextual_layers 2 \
