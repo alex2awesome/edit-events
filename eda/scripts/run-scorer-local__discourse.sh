@@ -39,6 +39,7 @@ python $DISCRIM_DIR/score_using_discriminator.py \
         --warmup_steps 0 \
         --max_num_word_positions 2048 \
         --map_tags \
+        --local
 
 
 #       --pretrained_files_s3 $pretrained_model \
