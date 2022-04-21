@@ -2,4 +2,6 @@
 *.gz
 *.csv
 *.json
+*.ckpt
 notebooks/.ipynb_checkpoints
+
