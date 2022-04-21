@@ -16,7 +16,7 @@ fi
 
 
 
-python $DISCRIM_DIR/score_using_discriminator.py \
+python3.7 $DISCRIM_DIR/score_using_discriminator.py \
         --model_type $model_type \
         --pretrained_files_s3 $pretrained_model \
         --experiment lstm_sequential \
