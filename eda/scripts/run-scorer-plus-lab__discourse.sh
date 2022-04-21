@@ -3,20 +3,30 @@ ROOT_DIR=$SCRIPT_DIR/../..
 DISCRIM_DIR=$ROOT_DIR/../controlled-sequence-gen/discriminator/
 cache_dir=$ROOT_DIR/../named-models
 
+model_type=roberta
+if [[ $model_type == 'gpt2' ]]
+then
+  pretrained_model="$cache_dir/gpt2-medium-expanded-embeddings"
+  frozen_layers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22"
+else
+  pretrained_model="$cache_dir/roberta-base"
+  frozen_layers="0 1 2 3 4 5 6 7 8 9"
+fi
+##
 
-python $DISCRIM_DIR/score_using_discriminator.py \
-        --model_type roberta \
-        --pretrained_files_s3 /Users/alex/.cache/torch/transformers/named-models/roberta-base \
+python3.7 $DISCRIM_DIR/score_using_discriminator.py \
+        --model_type $model_type \
+        --pretrained_files_s3 $pretrained_model \
         --experiment lstm_sequential \
         --batch_size 1 \
         --num_train_epochs 3 \
         --do_train \
         --do_eval \
-        --train_data_file_s3 ../data/edit-events-sentences-for-discourse-modeling.csv.gz \
+        --train_data_file_s3 data/edit-events-sentences-for-discourse-modeling.csv \
         --notes "Score sentence edits" \
         --freeze_transformer \
-        --discriminator_path "../models/trial-Roberta, high level labels__epoch=08-f1_macro=0.65.ckpt" \
-        --processed_data_fname "../data/edit_scores.txt" \
+        --discriminator_path "$SCRIPT_DIR/../models/trial-Roberta, high level labels__epoch=08-f1_macro=0.65.ckpt" \
+        --processed_data_fname "$SCRIPT_DIR/data/edit_scores.txt" \
         --context_layer 'lstm' \
         --num_contextual_layers 2 \
         --num_sent_attn_heads 2 \
