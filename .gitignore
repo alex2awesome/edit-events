@@ -1,0 +1,5 @@
+*.pkl
+*.gz
+*.csv
+*.json
+notebooks/.ipynb_checkpoints
